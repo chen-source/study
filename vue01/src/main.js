@@ -13,6 +13,8 @@ import qs from 'qs'
 //引入element ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+//引入 store
+import store from './store'
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false
 // Vue.prototype.$http = axios
@@ -29,6 +31,7 @@ Vue.use(ElementUI)
 //定义实例
 new Vue({
   el: '#app',
+  store,//注入到框架中
   router, //注入框架中
   components: { App },
   template: '<App/>'

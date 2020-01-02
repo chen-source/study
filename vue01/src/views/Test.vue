@@ -13,11 +13,20 @@
         </ul>
         <br>
         <button id="btn" @click="getcan">post请求</button>
+        <el-button type="primary" @click="getcan">post请求</el-button>
         {{ res }}
         <br>
+        <h5>修改前的值:{{ this.$store.state.count }}</h5>
+        <h5>简写:{{ count1 }}</h5>
+        <h5>我是修改后的值:{{ getStateCount1 }}</h5>
+        <h5>{{ this.$store.state.sum }}</h5>
+        <el-button type="primary" @click="addFun">+10</el-button>
+        <el-button type="primary" @click="reductionFun">-1</el-button>
+        <h5>{{ sum1 }}</h5>
     </div>
 </template>
 <script>
+import {mapState,mapActions,mapGetters} from 'vuex';
 export default {
     name:'test',
     data(){
@@ -26,6 +35,15 @@ export default {
             jokeList:[],
             res:''
         }
+    },
+    computed:{
+        ...mapState({
+            sum1:state=>state.sum,
+            count1:state=>state.count
+        }),
+        ...mapGetters({
+            getStateCount1:'getStateCount'//getStateCount是方法名，getStateCount1给防范气的别名，可以直接引入getStateCount1，不需要在写this.$store.getters.getStateCount
+        })
     },
     methods:{
         getResult:function(){
@@ -77,7 +95,19 @@ export default {
         },
         back:function(){
             this.$router.go(-1);
+        },
+        addFun:function(){
+            var n=10;
+            this.$store.dispatch("addFun",n);
+            // this.$store.commit("add");
+        },
+        reductionFun:function(){
+            this.$store.dispatch("reductionFun");
+            // this.$store.commit("reduction");
         }
     }
 }
 </script>
+<style scoped>
+
+</style>
