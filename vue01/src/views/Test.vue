@@ -9,7 +9,7 @@
         <button id="btn" @click="getNet">网络请求</button>
         <br>
         <ul >
-            <li v-for="(arrJoke,index) in jokeList">{{ arrJoke }}</li>
+            <li v-for="(arrJoke,index) in jokeList" :key="index">{{ arrJoke }}</li>
         </ul>
         <br>
         <button id="btn" @click="getcan">post请求</button>
