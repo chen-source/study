@@ -22,6 +22,17 @@
         通过传参访问test
       </router-link>
       <br>
+      <router-link :to="{path:'/elementStudy'}">
+        访问element
+      </router-link>
+      <br>
+       <router-link :to="{path:'/layout'}">
+        访问layout
+      </router-link>
+      <br>
+       <router-link :to="{path:'/form'}">
+        访问form表单
+      </router-link>
     </p>
     <h2>Essential Links</h2>
     <ul>

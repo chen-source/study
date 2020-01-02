@@ -23,9 +23,13 @@
         <el-button type="primary" @click="addFun">+10</el-button>
         <el-button type="primary" @click="reductionFun">-1</el-button>
         <h5>{{ sum1 }}</h5>
+        <!--3.引入导入的elementStudy标签-->
+        <elementStudy></elementStudy>
     </div>
 </template>
 <script>
+//1.先使用import导入你要在该组件中使用的子组件
+import elementStudy from './ElementStudy'
 import {mapState,mapActions,mapGetters} from 'vuex';
 export default {
     name:'test',
@@ -105,6 +109,10 @@ export default {
             this.$store.dispatch("reductionFun");
             // this.$store.commit("reduction");
         }
+    },
+    components:{
+        //2.然后,在components中写入子组件
+        elementStudy
     }
 }
 </script>
