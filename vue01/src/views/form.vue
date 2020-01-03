@@ -39,6 +39,70 @@
         <br>
         <!--级联选择 show-all-levels  为true显示所有，为false显示最后一个-->
         <el-cascader :options="options" clearable @change="handleChange" :show-all-levels="true"></el-cascader>
+        <!--swich开关 -->
+        <el-switch :active-text="msg" v-model="value1" :disabled="false" :inactive-text="msg1" @change="handleChange">
+            
+        </el-switch>
+        <!--slide开关 -->
+        <el-slider v-model="value3" show-input>
+
+        </el-slider>
+        <!--时间和日期-->
+        <el-time-picker v-model="value4" placeholder="选择时间" :editable="false">
+        </el-time-picker>
+        <el-date-picker v-model="value5" type="date" placeholder="选择日期" :editable="false">
+
+        </el-date-picker>
+        <!--rate评分-->
+        <el-rate v-model="value6" show-text :texts="value7"></el-rate>
+        <!--tag标签-->
+        <div class="tag-group">
+            <el-tag v-for="(item,index) in value8" :key="index" :type="item.type" closable effect="dark">
+                {{ item.label }}
+            </el-tag>
+        </div>
+        <!--pagination分页-->
+        <el-pagination background layout="prev,pager,next" :total="1000">
+
+        </el-pagination>
+        <!--标记-->
+        <el-badge :value="12" class="item">
+            <el-button size="small">评论</el-button>
+        </el-badge>
+        <el-badge :value="1" type="primary" class="item">
+            <el-button size="small">回复</el-button>
+        </el-badge>
+        <el-badge :value="15" type="success" class="item">
+            <el-button size="small">评论</el-button>
+        </el-badge>
+        <el-badge :value="370" class="item">
+            <el-button size="small">回复</el-button>
+        </el-badge>
+        <el-dropdown trigger="click">
+            <span class="el-dropdown-link">点我查看<i class="el-icon-caret-bottom el-icon--right"></i></span>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item class="clearfix">
+                    评论<el-badge class="mark" :value="12"/>
+                </el-dropdown-item>
+                <el-dropdown-item class="clearfix">
+                    回复<el-badge class="mark" :value="3"/>
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+        <!--头像-->
+            <div v-for="(fit,index) in fits" :key="index" >
+                <span class="title">{{ fit }}</span>
+                <el-avatar shape="square" :size="50" :fit="fit" :src="url"></el-avatar>
+            </div>
+        <el-button @click="openFullScreen2">点击增加遮罩</el-button>
+        <el-button @click="open" :plain="true">成功</el-button>
+        <el-button @click="open2" :plain="true">测试</el-button>
+        <el-button @click="open3" :plain="true">点击</el-button>
+        <el-page-header @back="goBack" content="页面"></el-page-header>
+        <!--懒加载-->
+        <div class="demo-image__lazy">
+            <el-image v-for="url in urls" :key="url" :src="url" lazy></el-image>
+        </div>
     </div>
 </template>
 <script>
@@ -53,6 +117,32 @@ export default {
             checkList:['复选框A','选中且禁用'],
             text:'',
             num:1,
+            value1:true,
+            msg:'按月付费',
+            msg1:'按年收费',
+            value3:0,
+            value4:new Date(),
+            value5:'',
+            value6:null,
+            value7:['极差', '失望', '一般', '满意', '惊喜1'],
+            value8:[
+                {type:'',label:'标签一'},
+                {type:'success',label:'标签二'},
+                {type:'danger',label:'标签三'},
+                {type:'waring',label:'标签四'},
+                {type:'info',label:'标签五'}
+            ],
+            fits: ['fill','contain','cover','none','scale-down'],
+            url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+             urls: [
+                'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+                'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+                'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+                'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+                'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+                'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+                'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
+                ],
             cities:[{
                 value: 'Beijing',
                 label: '北京'
@@ -276,10 +366,63 @@ export default {
         },
         handleChange(value) {
             console.log(value);
-        }
+        },
+        openFullScreen2() {
+            const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+            });
+            setTimeout(() => {
+            loading.close();
+            }, 2000);
+      },
+      open(){
+          this.$message({
+              message:"弹出信息",
+              type:'success'//type包含success,waring.error等
+          });
+      },
+      open2(){
+          this.$alert('这是一段内容','标题名称',{
+              confirmButtonText:'确定',
+              callback:action=>{
+                  this.$message({
+                      type:'info',
+                      message:'测试'
+                  });
+              }
+          });
+      },
+      open3(){
+          this.$confirm('此操作将永久删除该文件,是否继续?','提示',{
+              confirmButtonText:'确定',
+              cancelButtonText:'取消',
+              type:'warning',
+              center:true
+          }).then(()=>{
+              this.$message({
+                  message:'删除成功!',
+                  type:'success'
+              });
+          }).catch(()=>{
+              this.$message({
+                  type:'info',
+                  message:'已取消删除'
+              })
+          });
+      },
+      goBack(){
+          this.$router.go(-1);
+          console.log("返回");
+      }
     }
 }
 </script>
 <style scoped>
-
+    .item{
+        margin-top: 10px;
+        margin-right: 40px;
+    }
 </style>

@@ -23,6 +23,8 @@
         <el-button type="primary" @click="addFun">+10</el-button>
         <el-button type="primary" @click="reductionFun">-1</el-button>
         <h5>{{ sum1 }}</h5>
+        <el-button @click="goMock" >点击请求mock</el-button>
+        <br>
         <!--3.引入导入的elementStudy标签-->
         <elementStudy></elementStudy>
     </div>
@@ -108,6 +110,19 @@ export default {
         reductionFun:function(){
             this.$store.dispatch("reductionFun");
             // this.$store.commit("reduction");
+        },
+        goMock(){
+            let that=this;
+            that.$axios.get('/getUser').then(res=>{
+                console.log(res);
+                that.$message({
+                    message:that.$qs.parse(res.data),
+                    type:'success',
+                    showClose:true
+                });
+            }).catch(error=>{
+                console.log(error);
+            })
         }
     },
     components:{

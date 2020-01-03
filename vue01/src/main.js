@@ -15,6 +15,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 //引入 store
 import store from './store'
+//引入mock(进行数据模拟  模拟后台)
+import './mock/index'
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false
 // Vue.prototype.$http = axios
