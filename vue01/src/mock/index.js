@@ -6,4 +6,5 @@ let data = Mock.mock(/\/getUser/, 'get', getUserInfo)
 // Mock.setup({
 //   timeout: 5000
 // })
+
 export default data
