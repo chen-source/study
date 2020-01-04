@@ -9,6 +9,7 @@ import Test from '@/views/Test'
 import ElementStudy from '@/views/ElementStudy'
 import layout from '@/views/layout'
 import form from '@/views/form'
+import Sys from '@/router/sys/index'
 //vue全局使用router
 Vue.use(Router)
 //定义路由配置
@@ -18,7 +19,9 @@ export default new Router({
       path: '/',  //链接路径
       name: 'HelloWorld2', //路由名称
       component: HelloWorld   //对应的组件模板
+      // redirect:'/login' //重定向到登录页面
     },
+    Sys,
     {
       path:'/de',
       name:'demo1',

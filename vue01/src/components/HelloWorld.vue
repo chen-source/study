@@ -33,6 +33,10 @@
        <router-link :to="{path:'/form'}">
         访问form表单
       </router-link>
+      <br>
+       <router-link :to="{path:'/login/login1'}">
+        测试增加router文件夹
+      </router-link>
     </p>
     <h2>Essential Links</h2>
     <ul>
