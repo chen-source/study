@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" >
     <div id="bgd">
       <canvas
         id='myCanvas'
@@ -82,7 +82,7 @@ export default {
         "#e23c66"
       ], //阴影颜色列表
       directionList: ["leftTop", "leftBottom", "rightTop", "rightBottom"], //星星运行方向
-      speed: 50, //星星运行速度
+      speed: 5, //星星运行速度
       last_star_created_time: new Date(), //上次重绘星星时间
       Ball: class Ball {
         constructor(radius) {
@@ -230,7 +230,7 @@ export default {
   width: 100vw;
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: 100vh;
   font-size: 16px;
   background-repeat: no-repeat;
   background-position: left top;
@@ -238,8 +238,11 @@ export default {
   color: #fff;
   font-family: "Source Sans Pro";
   background-size: 100%;
-  // background-image: url("../../../static/imgs/demo-1-bg.jpg");
+  background-image: url("../../../static/imgs/demo-1-bg.jpg");
+  // background-color: #39f;
   position: relative;
+  // position: fixed;
+  // position: absolute;
   #bgd {
     height: 100vh;
     width: 100vw;
@@ -274,7 +277,7 @@ export default {
       width: 200px;
     }
     .iconfont {
-      color: #fff;
+      color: rgb(15, 199, 190);
     }
   }
 }

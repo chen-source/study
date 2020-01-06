@@ -48,7 +48,7 @@ export default {
             count1:state=>state.count
         }),
         ...mapGetters({
-            getStateCount1:'getStateCount'//getStateCount是方法名，getStateCount1给防范气的别名，可以直接引入getStateCount1，不需要在写this.$store.getters.getStateCount
+            getStateCount1:'getStateCount'//getStateCount是方法名，getStateCount1给方法的别名，可以直接引入getStateCount1，不需要在写this.$store.getters.getStateCount
         })
     },
     methods:{

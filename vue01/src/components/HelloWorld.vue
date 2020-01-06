@@ -34,7 +34,7 @@
         访问form表单
       </router-link>
       <br>
-       <router-link :to="{path:'/login/login1'}">
+       <router-link :to="{path:'/login'}">
         测试增加router文件夹
       </router-link>
     </p>

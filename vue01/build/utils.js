@@ -47,7 +47,9 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        //加上下面这个publicPath  打包之后，部署到服务器，可以看到elementui图标
+        publicPath:'../../'
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
