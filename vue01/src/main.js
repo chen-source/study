@@ -8,12 +8,12 @@ import App from './App'
 import router from './router'
 //引入axios
 import axios from 'axios'
-//引入 qs
+//引入 qs(类似json与string格式转换)
 import qs from 'qs'
 //引入element ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-//引入 store
+//引入 store(全局变量)
 import store from './store'
 //引入mock(进行数据模拟  模拟后台)
 import './mock/index'

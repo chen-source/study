@@ -1,63 +1,19 @@
 <template>
-  <div id="login" >
+  <div id="login">
     <div id="bgd">
-      <canvas
-        id='myCanvas'
-        :width='width'
-        :height='height'
-      >
-      </canvas>
+      <canvas id="myCanvas" :width="width" :height="height"></canvas>
     </div>
     <div id="loginBox">
-      <h4>登录</h4>
-      <el-form
-        :model="loginForm"
-        :rules="loginRules"
-        ref="loginForm"
-        label-width="0px"
-      >
-        <el-form-item
-          label=""
-          prop="userName"
-          style="margin-top:40px;"
-        >
-          <el-row>
-            <el-col :span='2'>
-              <span class="iconfont">&#xe654;</span>
-            </el-col>
-            <el-col :span='22'>
-              <el-input
-                class="inps"
-                placeholder='用户名'
-                v-model="loginForm.userName"
-              ></el-input>
-            </el-col>
-          </el-row>
+      <h3>欢迎登录</h3>
+      <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px">
+        <el-form-item label="" prop="userName" style="margin-top:20px;">
+          <el-input prefix-icon="el-icon-user" class="inps" placeholder="用户名" v-model="loginForm.userName"></el-input>
         </el-form-item>
-        <el-form-item
-          label=""
-          prop="passWord"
-        >
-          <el-row>
-            <el-col :span='2'>
-              <span class="iconfont">&#xe616;</span>
-            </el-col>
-            <el-col :span='22'>
-              <el-input
-                class="inps"
-                placeholder='密码'
-                v-model="loginForm.passWord"
-              ></el-input>
-            </el-col>
-          </el-row>
+        <el-form-item label prop="passWord">
+          <el-input class="inps" prefix-icon="el-icon-lock" placeholder="密码" v-model="loginForm.passWord" :show-password="true"></el-input>
         </el-form-item>
-        <el-form-item style="margin-top:55px;">
-          <el-button
-            type="primary"
-            round
-            class="submitBtn"
-            @click="submitForm"
-          >登录</el-button>
+        <el-form-item style="margin-top:50px;">
+          <el-button type="primary" round class="submitBtn" @click="submitForm"><font color="white">登录</font></el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -66,7 +22,7 @@
 
 <script>
 export default {
-  name:'login',
+  name: "login",
   data() {
     return {
       canvas: null,
@@ -131,7 +87,26 @@ export default {
   },
   methods: {
     //提交登录
-    submitForm() {alert("测试");},
+    submitForm() {
+      // alert("测试");
+      let that=this;
+      // this.$axios.get("/demo/test2/hello2",{params:{name:'测试'}}).then(args=>function(){
+      //   console.log(args);
+      // }).catch(error=>function(){
+      //   console.log(error);
+      // });
+      let postData = this.$qs.stringify({
+        username: "我的空间"
+      });
+      this.$axios.post("/app/demo/test2/hello3",postData).then(args=>function(){
+        alert(args);
+        console.log(args);
+      }).catch(error=>function(){
+        alert(error);
+        console.log(error);
+      });
+      
+    },
     //重复动画
     drawFrame() {
       let animation = requestAnimationFrame(this.drawFrame);
@@ -249,7 +224,7 @@ export default {
     overflow: hidden;
   }
   #loginBox {
-    width: 240px;
+    width: 380px;
     height: 280px;
     position: absolute;
     top: 0;
@@ -257,7 +232,7 @@ export default {
     right: 0;
     bottom: 0;
     margin: auto;
-    padding: 50px 40px 40px 40px;
+    padding: 30px 40px 40px 40px;
     box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
     opacity: 1;
     background: linear-gradient(
@@ -266,15 +241,18 @@ export default {
       rgb(0, 0, 0) 100%
     );
     /deep/ .inps input {
-      border: none;
+      border-radius:50px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      border: 1px solid #39f;
       color: #fff;
       background-color: transparent;
-      font-size: 12px;
+      font-size: 14px;
     }
     .submitBtn {
-      background-color: transparent;
       color: #39f;
-      width: 200px;
+      width: 300px;
+      font-size: 18px;
+      // cursor:pointer;
     }
     .iconfont {
       color: rgb(15, 199, 190);
