@@ -6,14 +6,27 @@
     <div id="loginBox">
       <h3>欢迎登录</h3>
       <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px">
-        <el-form-item label="" prop="userName" style="margin-top:20px;">
-          <el-input prefix-icon="el-icon-user" class="inps" placeholder="用户名" v-model="loginForm.userName"></el-input>
+        <el-form-item label prop="userName" style="margin-top:20px;">
+          <el-input
+            prefix-icon="el-icon-user"
+            class="inps"
+            placeholder="用户名"
+            v-model="loginForm.userName"
+          ></el-input>
         </el-form-item>
         <el-form-item label prop="passWord">
-          <el-input class="inps" prefix-icon="el-icon-lock" placeholder="密码" v-model="loginForm.passWord" :show-password="true"></el-input>
+          <el-input
+            class="inps"
+            prefix-icon="el-icon-lock"
+            placeholder="密码"
+            v-model="loginForm.passWord"
+            :show-password="true"
+          ></el-input>
         </el-form-item>
         <el-form-item style="margin-top:50px;">
-          <el-button type="primary" round class="submitBtn" @click="submitForm"><font color="white">登录</font></el-button>
+          <el-button type="primary" round class="submitBtn" @click="submitForm">
+            <font color="white">登录</font>
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -95,17 +108,34 @@ export default {
       // }).catch(error=>function(){
       //   console.log(error);
       // });
-      let postData = this.$qs.stringify({
-        username: "我的空间"
+      // let postData = this.$qs.stringify({
+      //   userName:"chenhongyu1",
+      //   userPwd:"000000"
+      // });
+      let postData = {
+        userName:"chenhongyu1",
+        userPwd:"000000"
+      };
+      // this.$axios.post("/app/login",postData,{headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(args=>function(){
+      //   alert(123);
+      //   // console.log(args);
+      // }).catch(error=>function(){
+      //   alert(456);
+      //   // console.log(error);
+      // });
+      //json格式: application/json
+      //表单格式: multipart/form-data
+      this.$axios({method:"post",url:"/app/login",data:postData,headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function(args){
+          // alert(that.$qs.parse(args.data));
+          alert(args.data);
+          console.log(args);
+      },function(err){
+        console.log(err);
+        alert("登录失败");
       });
-      this.$axios.post("/app/demo/test2/hello3",postData).then(args=>function(){
-        alert(args);
-        console.log(args);
-      }).catch(error=>function(){
-        alert(error);
-        console.log(error);
-      });
+
       
+
     },
     //重复动画
     drawFrame() {
@@ -241,7 +271,7 @@ export default {
       rgb(0, 0, 0) 100%
     );
     /deep/ .inps input {
-      border-radius:50px;
+      border-radius: 50px;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       border: 1px solid #39f;
       color: #fff;
