@@ -37,6 +37,10 @@
        <router-link :to="{path:'/login'}">
         测试增加router文件夹
       </router-link>
+      <br>
+       <router-link :to="{path:'/upfile'}">
+        上传文件
+      </router-link>
     </p>
     <h2>Essential Links</h2>
     <ul>

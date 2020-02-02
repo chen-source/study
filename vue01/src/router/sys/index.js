@@ -1,4 +1,4 @@
-import Login from '@/views/login/loginOne'
+import Login from '@/views/login/login'
 
 const router={
     name:'login',

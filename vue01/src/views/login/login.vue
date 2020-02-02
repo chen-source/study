@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="id1">
     <el-form
       :model="loginForm"
       :rules="loginRules"
@@ -18,6 +18,7 @@
           v-model="loginForm.checkPass"
           auto-complete="off"
           placeholder="请输入密码"
+          :show-password="true"
         ></el-input>
       </el-form-item>
       <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
@@ -92,7 +93,7 @@ export default {
   width: 350px;
   padding: 35px 35px 15px 35px;
   border: 1px solid #eaeaea;
-  background: #0f7eb1;
+  background: #1083b1;
   color: #fff;
   .title {
     margin: 0px auto 40px auto;
@@ -106,5 +107,6 @@ export default {
     font-size: 20px;
     letter-spacing: 10px;
   }
+  
 }
 </style>
